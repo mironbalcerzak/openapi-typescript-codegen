@@ -4,11 +4,13 @@
 
 {{#each imports}}
 import type { {{{this}}} } from './{{{this}}}';
+import { init{{{this}}} } from './{{{this}}}';
 {{/each}}
 {{/if}}
 
 {{#equals export 'interface'}}
 {{>exportInterface}}
+{{>exportEmptyObject}}
 {{else equals export 'one-of'}}
 {{>exportComposition}}
 {{else equals export 'any-of'}}

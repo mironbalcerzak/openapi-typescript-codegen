@@ -1,0 +1,25 @@
+{
+{{#each properties}}
+	{{#equals export 'array'}}
+		{{name}}: [],
+	{{else equals export 'enum'}}
+		{{name}}: {{../name}}.{{name}}.{{enum.0.name}},
+	{{else equals export 'reference'}}
+		{{name}}: init{{type}}(),
+	{{else equals export 'dictionary'}}
+		{{name}}: {},
+	{{else equals export 'generic'}}
+		{{#equals type 'string'}}
+			{{name}}: '',
+		{{else equals type 'number'}}
+			{{name}}: 0,
+		{{else equals type 'boolean'}}
+			{{name}}: false,
+		{{else}}
+			{{name}}: null,
+		{{/equals}}
+	{{else}}
+		{{name}}: null,
+	{{/equals}}
+{{/each}}
+}
